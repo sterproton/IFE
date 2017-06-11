@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        fieldset{
+            margin-left: 1em;
+            margin-top: 1em;
+            overflow: hidden;
+            border: none;
+        }
+        input{
+            float: left;
+        }
+        .btn{
+            float: left;
+        }
+        #left{
+            margin-left: .5em;
+        }
+        #right{
+            margin-left: 1.5em;
+        }
+        .queue{
+            background-color: red;
+            padding: .7em;
+            color: #ffffff;
+            margin-left: 1em;
+            float: left;
+        }
+        .container{
+            clear: both;
+            overflow: hidden;
+            margin: 1em;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
-    
+    <fieldset>
+        <input type="text"  id="input" placeholder="请输入数值">
+        <section id="left" class="btn">
+            <button id="leftIn">左侧入</button>
+            <button id="rightIn">右侧入</button>
+        </section>
+        <section id="right" class="btn">
+            <button id="leftOut">左侧出</button>
+            <button id="rightOut">右侧出</button>
+        </section>
+    </fieldset>
+    <div class="container">
+    </div>
+    <script src="js/task6.js"></script>
 </body>
 </html>
