@@ -42,6 +42,15 @@
         .container div{
             margin-top: 1em;
         }
+        #can{
+            width: 1020px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        canvas{
+            border: 1px solid grey;
+            box-shadow: .2px .2px 2px .5px grey;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -55,10 +64,12 @@
         <section id="right" class="btn">
             <button id="leftOut">左侧出</button>
             <button id="rightOut">右侧出</button>
+            <button id="sort">排序</button>
         </section>
     </fieldset>
-    <div class="container">
+    <div id="can">
+        <canvas id="myCanvas" width="1020" height="500"></canvas>
     </div>
-    <script src="js/task6.js"></script>
+    <script src="js/task7.js"></script>
 </body>
 </html>
