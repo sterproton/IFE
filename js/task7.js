@@ -12,8 +12,10 @@ const rightInBtn=document.getElementById("rightIn");
 const leftOutBtn=document.getElementById("leftOut");
 const rightOutBtn=document.getElementById("rightOut");
 const sortBtn=document.getElementById("sort");
+const unSortBtn=document.getElementById("unsort");
+const selectSortBtn=document.getElementById("selectSort");
 const canvas=document.getElementById("myCanvas");
-const queueData=[];//一个队列，存放数据
+let queueData=[];//一个队列，存放数据
 
 //初始化Canvas画布
 let ctx=canvas.getContext("2d");
@@ -107,13 +109,21 @@ function addHandler(){
         render();
     }
 
+    function unsort(){
+        queueData=[];
+        for(let i=1;i<=60;i++){
+            queueData.push(Math.round(Math.random()*90+10));
+        }
+        render();
+    }
     //给每一个按钮添加事件处理函数
     leftInBtn.addEventListener("click",leftIn);
     leftOutBtn.addEventListener("click",leftOut);
     rightInBtn.addEventListener("click",rightIn);
     rightOutBtn.addEventListener("click",rightOut);
     sortBtn.addEventListener("click",queueSort);
-
+    unSortBtn.addEventListener("click",unsort);
+    selectSortBtn.addEventListener("click",seleSort);
 }
 
 /**
@@ -124,3 +134,53 @@ function init(){
 }
 
 init();
+
+
+
+function seleSort(){
+    function selectionSort(queueData) {
+        var length = queueData.length,
+            i,
+            j,
+            minIndex,
+            minValue,
+            temp;
+        for (i = 0; i < length - 1; i++) {
+            minIndex = i;
+            minValue = queueData[minIndex];
+            for (j = i + 1; j < length; j++) {
+                if (queueData[j] < minValue) {
+                    minIndex = j;
+                    minValue = queueData[minIndex];
+                }
+            }
+            // 交换位置
+            temp = queueData[i];
+            queueData[i] = minValue;
+            queueData[minIndex] = temp;
+            slowlyRender(Array.from(queueData),i+1);
+        }
+    }
+    selectionSort(queueData);
+}
+
+/**
+ * 此函数用于排序的缓慢渲染，通过定时器实现，可实现排序的动画效果。
+ * @param {*这个是队列的一个副本，保存每一次队列操作后的队列} queueCopy 
+ * @param {*这个是延迟操作的时间，i是用在setTimeOut那里的} i 
+ */
+function slowlyRender(queueCopy,i){
+    function Render(queueData){
+        ctx.clearRect(0,0,1020,500); //每一此渲染之前都清除Canvas画布
+        for(let i=0;i<queueData.length;i++){
+            let value=queueData[i]*5;
+            ctx.fillRect(i*17,500-value,15,value);
+        }
+        console.log("render complete");
+    }
+    setTimeout(()=>{
+        Render(queueCopy);
+    },100*i);//这里可以控制延迟操作的幅度，你可以选择在参数那里改，或者在这里改
+}
+
+
