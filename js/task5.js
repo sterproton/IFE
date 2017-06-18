@@ -9,6 +9,7 @@ var aqiSourceData = {
 };
 */
 
+
 // 以下两个函数用于随机模拟生成测试数据
 function getDateStr(dat) {
   var y = dat.getFullYear();

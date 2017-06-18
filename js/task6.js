@@ -62,7 +62,7 @@ function addQueue(text){
     let div=document.createElement('div');
     div.className="queue"
     div.innerText=text;
-    container.appendChild(div);
+    container.appendChild(div); 
 }
 /**
  * 渲染

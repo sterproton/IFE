@@ -180,7 +180,7 @@ function slowlyRender(queueCopy,i){
     }
     setTimeout(()=>{
         Render(queueCopy);
-    },100*i);//这里可以控制延迟操作的幅度，你可以选择在参数那里改，或者在这里改
+    },50*i);//这里可以控制延迟操作的幅度，你可以选择在参数那里改，或者在这里改
 }
 
 
