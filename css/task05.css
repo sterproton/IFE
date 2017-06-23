@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei";
+}
+header{
+    position: relative;
+    width: 980px;
+    height: 100px;
+    background-color: #fff;
+}
+
+#header_left_logo{
+    position: relative;
+    left: 7%;
+    background-image: url(..\\img\\icon-1.png);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    font: normal 15px "Microsoft YaHei";
+    font-weight: 100;
+    text-align: center;
+}
+
+.herder_class{
+    display: inline-block;
+}
