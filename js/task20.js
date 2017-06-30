@@ -23,7 +23,9 @@ const app={};
     function inputToArr(){
         let ProcessedIput=textArea.value.trim().split(/[\n，,、\s+]/);
         for(let item of ProcessedIput){
-            storeArr.push(item);
+            if(item!==""){
+                storeArr.push(item);
+            }
         }
     }
 

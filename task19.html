@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        fieldset{
+            margin-left: 1em;
+            margin-top: 1em;
+            overflow: hidden;
+            border: none;
+        }
+        input{
+            float: left;
+        }
+        .btn{
+            float: left;
+        }
+        #left{
+            margin-left: .5em;
+        }
+        #right{
+            margin-left: 1.5em;
+        }
+        .queue{
+            background-color: red;
+            padding: .7em;
+            color: #ffffff;
+            margin-left: 1em;
+            float: left;
+        }
+        .container{
+            clear: both;
+            overflow: hidden;
+            margin: 1em;
+        }
+        .container div{
+            margin-top: 1em;
+        }
+        #can{
+            width: 1020px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        canvas{
+            border: 1px solid grey;
+            box-shadow: .2px .2px 2px .5px grey;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <input type="text"  id="input" placeholder="请输入数值">
+        <section id="left" class="btn">
+            <button id="leftIn">左侧入</button>
+            <button id="rightIn">右侧入</button>
+        </section>
+        <section id="right" class="btn">
+            <button id="leftOut">左侧出</button>
+            <button id="rightOut">右侧出</button>
+            <button id="sort">排序</button>
+            <button id="selectSort">选择排序</button>
+            <button id="unsort">打乱</button>
+        </section>
+    </fieldset>
+    <div id="can">
+        <canvas id="myCanvas" width="1020" height="500"></canvas>
+    </div>
+    <script src="js/task19.js"></script>
+</body>
+</html>
