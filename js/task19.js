@@ -21,10 +21,11 @@ let queueData=[];//一个队列，存放数据
 let ctx=canvas.getContext("2d");
 ctx.fillStyle="#FF0000";
 
+
 /**
  * 此函数抽象了所有对队列的操作，比如左入左出，右入右出。
- * @param {*判断操作是添加还是移除数据，如果是1则是添加数据，0则是移除数据} pro 
- * @param {*判断操作是在那个方向，如果是1则是右边，比如pop,push。0则是左边} pos 
+ * @param {number} pro -判断操作是添加还是移除数据，如果是1则是添加数据，0则是移除数据
+ * @param {number} pos -判断操作是在那个方向，如果是1则是右边，比如pop,push。0则是左边
  * 比如 processData(1,1)为push processData(1,0)为unshift
  */
 function processData(pro,pos){
@@ -166,8 +167,8 @@ function seleSort(){
 
 /**
  * 此函数用于排序的缓慢渲染，通过定时器实现，可实现排序的动画效果。
- * @param {*这个是队列的一个副本，保存每一次队列操作后的队列} queueCopy 
- * @param {*这个是延迟操作的时间，i是用在setTimeOut那里的} i 
+ * @param {*} queueCopy -这个是队列的一个副本，保存每一次队列操作后的队列
+ * @param {*} i -这个是延迟操作的时间，i是用在setTimeOut那里的
  */
 function slowlyRender(queueCopy,i){
     function Render(queueData){

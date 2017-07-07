@@ -4,9 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Task21</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    @import url('https://fonts.googleapis.com/css?family=Arimo');
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #wrap{
+        display: table;
+        margin: 20px auto;
+    }
+    span{
+        font: normal 20px "Roboto";
+        text-transform: capitalize;
+    }
+    .tagsContainer{
+        margin: 20px 0;
+        overflow: hidden;
+    }
+    .tagsContainer div{
+        text-align: center;
+        padding: 5px;
+        display: inline-block;
+        margin-right: 5px;
+        background-color: #33adff;
+        color: white;
+        font-family: 'Arimo', sans-serif;
+        text-transform: uppercase;
+    }
+    textarea{
+        width: 300px;
+        height: 100px;
+        resize: none;
+    }
+    .tagInput{
+        margin-left: 10px;
+    }
+    input{
+        width: 200px;
+        height: 20px;
+    }
+    button{
+        margin: 0 auto;
+        display: block;
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        color: whitesmoke;
+        background-color: #0099cc;
+    }
+    button:hover{
+        background-color: #3333cc;
+    }
+    </style>
 </head>
 <body>
-    
+    <div id="wrap">
+        <label for="tags1"><span>tag:</span></label><input type="text"  class="tagInput" id="tags1">
+        <div  id="container1" class="tagsContainer">
+            <div>html5</div>
+            <div>javascript</div>
+            <div>css</div>
+            <div>html5</div>
+            <div>javascript</div>
+            <div>css</div>
+        </div>
+        <label for="tags2"><span>tag:</span></label><input type="text"  class="tagInput" id="tags2">
+        <div id="container2" class="tagsContainer">
+            <div>点击删除html5</div>
+            <div>javascript</div>
+            <div>css</div>
+        </div>
+        <textarea></textarea>
+        <button type="submit">确认兴趣爱好</button>
+        <div id="container3" class="tagsContainer" style="margin-top:5px;">
+            <div>瑜伽</div>
+            <div>瑜伽</div>
+            <div>瑜伽</div>
+        </div>
+    </div>
 </body>
 </html>
