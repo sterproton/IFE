@@ -13,8 +13,8 @@
         padding: 0;
     }
     #wrap{
-        display: table;
         margin: 20px auto;
+        width: 980px;
     }
     span{
         font: normal 20px "Roboto";
@@ -29,9 +29,10 @@
         padding: 5px;
         display: inline-block;
         margin-right: 5px;
+        margin-top: 10px;
         background-color: #33adff;
         color: white;
-        font-family: 'Arimo', sans-serif;
+        font-family: 'Arimo' 12px sans-serif;
         text-transform: uppercase;
     }
     textarea{
@@ -65,18 +66,9 @@
     <div id="wrap">
         <label for="tags1"><span>tag:</span></label><input type="text"  class="tagInput" id="tags1">
         <div  id="container1" class="tagsContainer">
-            <div>html5</div>
-            <div>javascript</div>
-            <div>css</div>
-            <div>html5</div>
-            <div>javascript</div>
-            <div>css</div>
         </div>
         <label for="tags2"><span>tag:</span></label><input type="text"  class="tagInput" id="tags2">
         <div id="container2" class="tagsContainer">
-            <div>点击删除html5</div>
-            <div>javascript</div>
-            <div>css</div>
         </div>
         <textarea></textarea>
         <button type="submit">确认兴趣爱好</button>
@@ -86,5 +78,6 @@
             <div>瑜伽</div>
         </div>
     </div>
+    <script src="js/task21.js"></script>
 </body>
 </html>
