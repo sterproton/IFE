@@ -31,6 +31,9 @@ const app={};
 
     function search(){
         let searchValue=searchInput.value;
+        if(searchValue===""){
+            return false;
+        }
         let divArr=container.children;
         function isMatch(text,item){
             let re=RegExp(text);
