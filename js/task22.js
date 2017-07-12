@@ -4,9 +4,10 @@
 function $(ele){
     return document.querySelectorAll(ele);
 }
-
-const container=document.querySelectorAll("#container")[0]; //$("#container")[0];
-
+const container=$("#container")[0];
+const binaryTreeGenerateBtn=$("button")[0];
+const input=$("input")[0];
+const BinaryTreeTraverBtn=$("button")[1];
 function getChildWidth(parent){
     return (parent.offsetWidth-22)/2-12;
 }
@@ -23,34 +24,54 @@ function createChildNode(parent){
     leftNode.style.width=rightNode.style.width=getChildWidth(parent)+'px';
     leftNode.style.height=rightNode.style.height=getChildHeight(parent)+'px';
 }
-function clearNode(node){
-        while(node.hasChildNodes()){
-            node.removeChild(node.firstChild);
-        }
+function clearChildNode(node){
+    while(node.hasChildNodes()){
+        node.removeChild(node.firstChild);
     }
+}
 function createBinaryTree(node,num){
-    clearNode(node);
+    clearChildNode(node);
     if(num>1){
         if(num>=6){
             throw Error("宽度不够");
         }
-        if(node.children.length===0){
-            createChildNode(node);
+        //elementBinaryTreeAllNodesTraveralFunc(node,createBinaryTree,num-1);
+        if (isPair(node)) {
             createBinaryTree(node.firstElementChild,num-1);
             createBinaryTree(node.lastElementChild,num-1);
         }else{
+            createChildNode(node);
             createBinaryTree(node.firstElementChild,num-1);
             createBinaryTree(node.lastElementChild,num-1);
         }
     }
 }
 
+function isPair(node){
+    if(node.children.length>0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 let cnt=0;
-function elementBinaryTreeTraveralFunc(tree,func){
-    func(tree);
-    if(tree.children.length>0){
-        elementBinaryTreeTraveralFunc(tree.firstElementChild,func);
-        elementBinaryTreeTraveralFunc(tree.lastElementChild,func);
+function elementBinaryTreeLeafTraveralFunc(node,func,param){
+    if(isPair(node)){
+        elementBinaryTreeLeafTraveralFunc(node.firstElementChild,func,param);
+        elementBinaryTreeLeafTraveralFunc(node.lastElementChild,func,param);
+    }else{
+        func(node,param);
+    }
+}
+
+function elementBinaryTreeAllNodesTraveralFunc(node,func,param){
+    if (isPair(node)) {
+        func(node,param);
+        elementBinaryTreeAllNodesTraveralFunc(node.firstElementChild,func,param);
+        elementBinaryTreeAllNodesTraveralFunc(node.lastElementChild,func,param);
+    }else{
+        func(node,param);
     }
 }
 function redBorder(node){
@@ -60,24 +81,29 @@ function backgroundToWhite(node){
     node.style.backgroundColor="#fff";
 }
 function changeBackgroundColor(node){
-    elementBinaryTreeTraveralFunc(container,backgroundToWhite);
+    elementBinaryTreeAllNodesTraveralFunc(container,backgroundToWhite);
     node.style.backgroundColor="red";
-    if(node.children.length>0){
+    if(isPair(node)){
         node.firstElementChild.style.backgroundColor="#fff";
         node.lastElementChild.style.backgroundColor="#fff";
     }
 }
 
 
+function btnHandler(){
+    createBinaryTree(container,parseInt(input.value));
+}
+function traveralHandler(){
+    elementBinaryTreeAllNodesTraveralFunc(container,function(node){ 
+        cnt++;
+        function wraper(){
+            changeBackgroundColor(node);
+        }
+        setTimeout(wraper,cnt*150);
+    })
+    cnt=0;
+}
 createBinaryTree(container,5);
-elementBinaryTreeTraveralFunc(container,function(node){
-    cnt++;
-    function wraper(){
-        changeBackgroundColor(node);
-    }
-    (function(num){
-        console.log(num);
-        setTimeout(wraper,num*150);
-    })(cnt);
-});
+binaryTreeGenerateBtn.addEventListener("click",btnHandler);
+BinaryTreeTraverBtn.addEventListener("click",traveralHandler);
 
