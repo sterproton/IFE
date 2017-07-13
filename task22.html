@@ -5,31 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-    *{margin: 0;padding: 0;}
-    #container{
-        margin: 50px auto;
-        width: 980px;
-        height: 500px;
-        border: 1px solid #000;
-        padding: 10px 5px;
-    }
-    .node{
-        border: 1px solid #000;
-        overflow: hidden;
-        padding: 10px 5px;
-        width: 473px;
-        height: 478PX;
-    }
-    .left{
-        float: left;
-    }
-    .right{
-        float: right;
-    }
-    #panel{
-        display: table;
-        margin: 0 auto;
-    }
+        *{margin: 0;padding: 0;}
+        #container{
+            margin: 50px auto;
+            width: 980px;
+            height: 500px;
+            border: 1px solid #000;
+            padding: 10px 5px;
+        }
+        .node{
+            border: 1px solid #000;
+            overflow: hidden;
+            padding: 10px 5px;
+            width: 473px;
+            height: 478PX;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        #panel{
+            display: table;
+            margin: 0 auto;
+        }
+        button{
+            margin-left: 10px;
+        }
     </style>
     <title>Task22</title>
 </head>
@@ -37,8 +40,10 @@
     <div id="container"></div>
     <div id="panel">
         <input type="text" name="" value="" placeholder="请输入二叉树的层数">
-        <button type="">生成二叉树</button>
-        <button type="">遍历</button>
+        <button>生成二叉树</button>
+        <button>前序遍历</button>
+        <button>中序遍历</button>
+        <button>后序遍历</button>
     </div>
     <script src="js/task22.js"></script>
 </body>

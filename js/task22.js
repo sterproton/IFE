@@ -1,18 +1,15 @@
-
 'use strict'
 
-const app={};
-{
-
-}
 function $(ele){
     return document.querySelectorAll(ele);
 }
 
 const container=$("#container")[0];
-const binaryTreeGenerateBtn=$("button")[0];
 const input=$("input")[0];
-const binaryTreeTraveralBtn=$("button")[1];
+const TreeGenerateBtn=$("button")[0];
+const preOrderBtn=$("button")[1];
+const inOrderBtn=$("button")[2];
+const postOrderBtn=$("button")[3];
 
 function isPair(node){
     if(node.children.length>0){
@@ -22,41 +19,64 @@ function isPair(node){
     }
 }
 
-function NodesTraversing(node,func,param){
+function preOrderTraveral(node,func){
     if (isPair(node)) {
-        func(node,param);
-        NodesTraversing(node.firstElementChild,func,param);
-        NodesTraversing(node.lastElementChild,func,param);
+        func(node);
+        Array.prototype.map.call(node.children,(childNode)=>{
+            preOrderTraveral(childNode,func);
+        });
     }else{
-        func(node,param);
+        func(node);
     }
 }
 
-function LeafTraversing(node,func,param){
+function inOrderTraveral(node,func){
     if(isPair(node)){
-        LeafTraversing(node.firstElementChild,func,param);
-        LeafTraversing(node.lastElementChild,func,param);
+        inOrderTraveral(node.firstElementChild,func);
+        func(node);
+        inOrderTraveral(node.lastElementChild,func);
+
     }else{
-        func(node,param);
+        func(node);
     }
 }
 
-function PairNodeTraversingByNum(node,num,func){
-    if(num>1){
-        if (isPair(node)) {
-            PairNodeTraversingByNum(node.firstElementChild,num-1,func);
-            PairNodeTraversingByNum(node.lastElementChild,num-1,func);
-        }else{
-            func(node);
-            PairNodeTraversingByNum(node.firstElementChild,num-1,func);
-            PairNodeTraversingByNum(node.lastElementChild,num-1,func);
-        }
+function postOrderTraveral(node,func){
+    if (isPair(node)) {
+        Array.prototype.map.call(node.children,(childNode)=>{
+            postOrderTraveral(childNode,func);
+        });
+        func(node);
+    }else{
+        func(node);
+    }
+}
+
+function LeafTraveral(node,func){
+    if(isPair(node)){
+        Array.prototype.map.call(node.children,(childNode)=>{
+                LeafTraveral(childNode,func);
+        });
+    }else{
+        func(node);
     }
 }
 
 function createBinaryTree(node,num){
-    PairNodeTraversingByNum(node,num,createChildNode);
+    if(num>1){
+        if(isPair(node)) {
+            Array.prototype.map.call(node.children,(childNode)=>{
+                createBinaryTree(childNode,num-1);
+            });
+        }else{
+            createChildNode(node);
+            Array.prototype.map.call(node.children,(childNode)=>{
+                createBinaryTree(childNode,num-1);
+            });
+        }
+    }
 }
+
 
 function getChildWidth(parent){
     return (parent.offsetWidth-22)/2-12;
@@ -88,7 +108,7 @@ function backgroundToWhite(node){
 }
 
 function changeBackgroundColor(node){
-    NodesTraversing(container,backgroundToWhite);
+    preOrderTraveral(container,backgroundToWhite);
     node.style.backgroundColor="red";
     if(isPair(node)){
         node.firstElementChild.style.backgroundColor="#fff";
@@ -101,27 +121,36 @@ function checkInput(inputValue){
     return !Number.isNaN(value)&&(0<value&&value<6);
 }
 
-function generaetHandler(){
+function treeGenerate(){
     if(checkInput(input.value)){
         clearChildNode(container);
+        preOrderTraveral(container,backgroundToWhite);
         createBinaryTree(container,parseInt(input.value));
     }else{
         alert("非法输入或者0<二叉树层数<6");
         return false;
     }
 }
-function traverallHandler(){
-    let cnt=0;
-    NodesTraversing(container,function(node){ 
-        cnt++;
-        function wrap(){
-            changeBackgroundColor(node);
-        }
-        setTimeout(wrap,cnt*300);
-    });
+
+function handlerGenerate(traveraFunc){
+    return ()=>{
+        let cnt=0;
+        traveraFunc(container,(node)=>{
+            setTimeout(()=>{
+                changeBackgroundColor(node);
+            } ,(++cnt)*500);
+        });
+        setTimeout(()=>{
+            preOrderTraveral(container,backgroundToWhite);
+        },(++cnt)*500);
+    }
 }
+
 createBinaryTree(container,5);
-binaryTreeGenerateBtn.addEventListener("click",generaetHandler);
-binaryTreeTraveralBtn.addEventListener("click",traverallHandler);
+TreeGenerateBtn.addEventListener("click",treeGenerate); 
+preOrderBtn.addEventListener("click",handlerGenerate(preOrderTraveral));
+inOrderBtn.addEventListener("click",handlerGenerate(inOrderTraveral));
+postOrderBtn.addEventListener("click",handlerGenerate(postOrderTraveral));
+
 
 
