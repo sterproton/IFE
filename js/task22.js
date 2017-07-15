@@ -52,16 +52,6 @@ function postOrderTraveral(node,func){
     }
 }
 
-function LeafTraveral(node,func){
-    if(isPair(node)){
-        Array.prototype.map.call(node.children,(childNode)=>{
-                LeafTraveral(childNode,func);
-        });
-    }else{
-        func(node);
-    }
-}
-
 function createBinaryTree(node,num){
     if(num>1){
         if(isPair(node)) {
@@ -110,15 +100,11 @@ function backgroundToWhite(node){
 function changeBackgroundColor(node){
     preOrderTraveral(container,backgroundToWhite);
     node.style.backgroundColor="red";
-    if(isPair(node)){
-        node.firstElementChild.style.backgroundColor="#fff";
-        node.lastElementChild.style.backgroundColor="#fff";
-    }
 }
 
 function checkInput(inputValue){
-    let value=Number.parseInt(inputValue)
-    return !Number.isNaN(value)&&(0<value&&value<6);
+    let value=Number.parseInt(inputValue);
+    return /^\d$/.test(inputValue)&&value>0&&value<6;
 }
 
 function treeGenerate(){
@@ -127,22 +113,30 @@ function treeGenerate(){
         preOrderTraveral(container,backgroundToWhite);
         createBinaryTree(container,parseInt(input.value));
     }else{
-        alert("非法输入或者0<二叉树层数<6");
-        return false;
+        alert("非法输入 或者\n二叉树层数必须>0or<6");
     }
+}
+
+function btnActive(flag){
+    let btns=$("button");
+    Array.from(btns).map((btn)=>{
+        btn.disabled=!flag;
+    })
 }
 
 function handlerGenerate(traveraFunc){
     return ()=>{
+        btnActive(false);
         let cnt=0;
         traveraFunc(container,(node)=>{
             setTimeout(()=>{
                 changeBackgroundColor(node);
-            } ,(++cnt)*500);
+            } ,(++cnt)*200);
         });
         setTimeout(()=>{
             preOrderTraveral(container,backgroundToWhite);
-        },(++cnt)*500);
+            btnActive(true);
+        },(++cnt)*200);
     }
 }
 
