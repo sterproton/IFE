@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{margin: 0;padding: 0;}
+        #container{
+            text-align: center;
+            margin: 20px 0;
+        }
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+        }
+        #divs{
+            border: 1px solid black;
+            padding: 10px 0;
+            display: inline-block;
+            overflow: hidden;
+            display: inline-block;
+            height: 120px;
+        }
+        #divs div{
+            padding: 10px 0;
+            float: right;
+            overflow: hidden;
+            margin-right: 5px;
+            border: 1px solid black;
+        }
+        #btnContainer{
+            width: 350px;
+            margin: 0 auto;
+        }
+        #btnContainer button{
+            clear: both;
+        }
+        #operateBtns{
+            float: right;
+        }
+    </style>
+    <title>Task24</title>
+</head>
+<body>
+    <div id="container">
+        <div id="divs">
+            super
+            <div>fish</div>
+            <div>note
+                <div>program
+                    <div>glass</div> 
+                    <div>element<div>cat</div></div>
+                </div>
+                <div>human
+                    <div>man</div> 
+                    <div>operate</div> 
+                    <div>code</div>
+                </div>
+            </div>
+            <div>car
+                <div>
+                    <div>school</div>
+                    <div>book</div>
+                </div>
+                <div>phone</div>
+                <div>apple
+                    <div>soccer</div>
+                    <div>cola</div>
+                    <div>pig</div>
+                    <div>pear</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="btnContainer">
+        <button>前序遍历</button>
+        <button>中序遍历</button>
+        <button>后序遍历</button>
+        <div id="operateBtns">
+            <button>添加节点</button>
+            <button>删除节点</button>
+        </div>
+        <br/>
+        <input type="text" placeholder="输入查找的文本或添加的节点" style="width:225px" >
+        <button>查找</button>
+    </div>
+    <script src="js/task24.js"></script>
+</body>
+</html>
